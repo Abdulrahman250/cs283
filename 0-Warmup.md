@@ -21,7 +21,7 @@ Please provide answers to these questions using markdown notation and place them
 
 1. Select with an `x` the platform you will be using for your course deliverables:
 
-    - [x ] drexel's tux cluster
+    - [x] drexel's tux cluster
     - [ ] WSL on Windows
     - [ ] Orbstack on MacOs
     - [ ] VMWare Fusion
@@ -30,12 +30,12 @@ Please provide answers to these questions using markdown notation and place them
 2. I have installed my virtual machine, tested it, feel comfortable using it, and validated that the required software is installed:
 
     - [ ] YES
-    - [x ] N/A - I plan to use tux
+    - [x] N/A - I plan to use tux
     - [ ] NO - Not Yet
 
 
 3. Please provide a link to the repository you are using for this class. https://github.com/Abdulrahman250/cs283
 
-4. Briefly describe what you want to get out of this class. My goal is to learn more about operting systems and C.
+4. Briefly describe what you want to get out of this class. My goal is to learn more about operating systems and C.
 
 5. Briefly describe any concerns you might be having with being successful in this class (if any). So far I don't have any concerns, since I took cs281 with you and it went smoothly.
