@@ -157,18 +157,46 @@ void word_print(char *buff, int str_len) {
 }
 
 void search_replace(char *buff, char *target, char *replace, int len) {
-    char *match = strstr(buff, target); // Find the first occurrence of the target in buff
-    int find_len = strlen(target);  // Length of the target string
-    int rep_len = strlen(replace);  // Length of the replacement string
+    char *ptr = NULL;
+    int target_len = 0; 
+    int replace_len = 0;
 
 
-    if (rep_len <= find_len) {
-        strncpy(match, replace, rep_len);   // Replace target with replacement
-        
-        char *src = match + find_len;
-        char *dst = match + rep_len;
+    // Calculate lengths of target and replacement strings
+    while (target[target_len] != '\0') {
+        target_len++;
+    }
+    while (replace[replace_len] != '\0') {
+        replace_len++;
+    }
 
-        while (*src != '\0' && *src != '.') {
+
+    // Locate the target substring in the buffer
+    for (int i = 0; buff[i] != '\0' && buff[i] != '.' && i < len; i++) {
+        int match = 1;
+        for (int j = 0; j < target_len; j++) {
+            if (buff[i + j] != target[j] || (i + j) >= len) {
+                match = 0;
+                break;
+            }
+        }
+        if (match) {
+            ptr = &buff[i];
+            break;
+        }
+    }
+
+
+    if (replace_len <= target_len) {
+        // Replace the target with the replacement
+        for (int i = 0; i < replace_len; i++) {
+            ptr[i] = replace[i];
+        }
+
+        char *src = ptr + target_len;
+        char *dst = ptr + replace_len;
+
+        while (*src != '\0' && *src != '.' && dst < buff + len) {
             *dst++ = *src++;
         }
 
@@ -176,25 +204,34 @@ void search_replace(char *buff, char *target, char *replace, int len) {
             *dst++ = '.';
         }
 
-    } else {    // If the replacement is longer 
-        int shift = rep_len - find_len; // Calculate length difference
-        char *end = buff + strlen(buff);
+    } else { // Replacement is longer than the target
+        int shift = replace_len - target_len; 
+        char *end = buff;
 
-        if (strlen(buff) + shift >= len) {
-            end = buff + len - 1;
+        while (*end != '\0' && *end != '.' && end < buff + len) {
+            end++;
         }
 
-        for (char *src = end; src >= match + find_len; src--) {
+        // Check if there's enough space in the buffer
+        if ((end - buff) + shift >= len) {
+            printf("Not Implemented!\n");
+            exit(1);
+        }
+
+        // Shift buffer content to make space for the replacement
+        for (char *src = end; src >= ptr + target_len; src--) {
             *(src + shift) = *src;
         }
 
-        strncpy(match, replace, rep_len);   // Copy replacement
-        char *dst = buff + len;
-        *dst = '\0';
+        // Replace the target with the replacement
+        for (int i = 0; i < replace_len; i++) {
+            ptr[i] = replace[i];
+        }
     }
 
-    // Target not found
-    if (!match) {
+
+    // If the target is not found then exit
+    if (!ptr) {
         printf("Not Implemented!\n");
         exit(1);
     }
