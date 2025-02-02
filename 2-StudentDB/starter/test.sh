@@ -72,7 +72,7 @@ setup_file() {
 }
 
 @test "Make sure the file size is correct at this time" {
-    run stat --format="%s" ./student.db
+    run sh -c 'stat --format="%s" ./student.db 2>/dev/null || stat -f "%z" ./student.db'
     [ "$status" -eq 0 ]
     [ "${lines[0]}" = "6400000" ] || {
         echo "Failed Output:  $output"
@@ -211,7 +211,6 @@ setup_file() {
 #}
 
 @test "Delete student 99999 in db" {
-    skip
     run ./sdbsc -d 99999
     [ "$status" -eq 0 ]
     [ "${lines[0]}" = "Student 99999 was deleted from database." ] || {
