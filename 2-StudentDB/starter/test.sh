@@ -72,7 +72,7 @@ setup_file() {
 }
 
 @test "Make sure the file size is correct at this time" {
-    run sh -c 'stat --format="%s" ./student.db 2>/dev/null || stat -f "%z" ./student.db'
+    run stat --format="%s" ./student.db
     [ "$status" -eq 0 ]
     [ "${lines[0]}" = "6400000" ] || {
         echo "Failed Output:  $output"
