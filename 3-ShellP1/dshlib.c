@@ -70,6 +70,7 @@ int build_cmd_list(char *cmd_line, command_list_t *clist)
     // Split the command line by the pipe character.
     char *saveptr1;
     char *command_token = strtok_r(cmd_line, PIPE_STRING, &saveptr1);
+    
     while (command_token != NULL) {
         trim_whitespace(command_token);
         if (strlen(command_token) == 0) {
@@ -84,6 +85,7 @@ int build_cmd_list(char *cmd_line, command_list_t *clist)
         // Split the current command by spaces using strtok_r.
         char *saveptr2;
         char *exe_token = strtok_r(command_token, " ", &saveptr2);
+
         if (exe_token == NULL) {
             command_token = strtok_r(NULL, PIPE_STRING, &saveptr1);
             continue;
@@ -101,6 +103,7 @@ int build_cmd_list(char *cmd_line, command_list_t *clist)
         args_buffer[0] = '\0';
         int first_arg = 1;
         char *arg_token;
+
         while ((arg_token = strtok_r(NULL, " ", &saveptr2)) != NULL) {
             if (!first_arg) {
                 strcat(args_buffer, " ");
