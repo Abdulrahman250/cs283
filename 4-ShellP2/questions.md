@@ -34,7 +34,7 @@
 
 - Find and describe three commonly used signals (e.g., SIGKILL, SIGTERM, SIGINT). What are their typical use cases?
 
-    > **Answer**:  SIGKILL: Terminates a process immediately and cannot be caught or ignored. SIGTERM: Requests graceful termination of a process; can be caught or ignored. SIGINT: Interrupts a process (e.g., via Ctrl+C) and can be caught to allow custom handling.
+    > **Answer**:  SIGKILL terminates a process immediately and cannot be caught or ignored. SIGTERM can be caught or ignored and is used for graceful termination. SIGINT interrupts a process (via Ctrl+C) and can be caught to allow custom handling.
 
 - What happens when a process receives SIGSTOP? Can it be caught or ignored like SIGINT? Why or why not?
 

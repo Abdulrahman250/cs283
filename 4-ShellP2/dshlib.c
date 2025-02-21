@@ -93,6 +93,7 @@ int exec_local_cmd_loop()
     return 0;
 }
 
+
 Built_In_Cmds match_command(const char *input) 
 {
     if (strcmp(input, "exit") == 0) {
@@ -103,7 +104,9 @@ Built_In_Cmds match_command(const char *input)
     return BI_NOT_BI;
 }
 
-Built_In_Cmds exec_built_in_cmd(cmd_buff_t *cmd) {
+
+Built_In_Cmds exec_built_in_cmd(cmd_buff_t *cmd) 
+{
     if (strcmp(cmd->argv[0], "exit") == 0) {
         exit(0);
     } else if (strcmp(cmd->argv[0], "cd") == 0) {
@@ -138,6 +141,7 @@ void trim_whitespace(char *str)
 
     *(end + 1) = '\0';
 }
+
 
 int build_cmd_buff(char *cmd_line, cmd_buff_t *cmd_buff) 
 {
@@ -176,6 +180,7 @@ int build_cmd_buff(char *cmd_line, cmd_buff_t *cmd_buff)
     cmd_buff->argv[cmd_buff->argc] = NULL;  
     return OK;
 }
+
 
 int exec_cmd(cmd_buff_t *cmd) 
 {
